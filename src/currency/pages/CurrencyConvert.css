@@ -1,0 +1,23 @@
+.currency-convert {
+  margin: 10rem auto;
+  padding: 2rem;
+  width: 50%;
+  max-width: 100rem;
+  text-align: center;
+  /* display: flex;
+  justify-content: center; */
+}
+
+.currency-convert form {
+  display: flex;
+  justify-content: center;
+}
+
+.currency-convert form input {
+  margin-right: 1rem;
+}
+
+.currency-convert__selection-result {
+  display: flex;
+  justify-content: center;
+}

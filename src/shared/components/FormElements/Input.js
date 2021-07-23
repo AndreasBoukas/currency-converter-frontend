@@ -29,7 +29,7 @@ const Input = (props) => {
   const { id, onInput } = props;
   const { value, isValid } = inputState;
 
-  useEffect(() => {
+  useEffect(() => {  //Runs loggic when component rerenders
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 

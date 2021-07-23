@@ -16,7 +16,7 @@ const NavLinks = (props) => {
       </li>
       {auth.isLoggedin && ( //if is logged in then render Currency List button
         <li>
-          <NavLink to="/currencies">Currency List</NavLink>
+          <NavLink to="/currency/list">Currency List</NavLink>
         </li>
       )}
       {auth.isLoggedin && ( //if is logged in then render Add Currency button

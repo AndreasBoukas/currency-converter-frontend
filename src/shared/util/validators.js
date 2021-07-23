@@ -1,6 +1,7 @@
 const VALIDATOR_TYPE_REQUIRE = 'REQUIRE';
 const VALIDATOR_TYPE_MINLENGTH = 'MINLENGTH';
 const VALIDATOR_TYPE_MAXLENGTH = 'MAXLENGTH';
+const VALIDATOR_TYPE_NUMBER = 'NUMBER';
 const VALIDATOR_TYPE_MIN = 'MIN';
 const VALIDATOR_TYPE_MAX = 'MAX';
 const VALIDATOR_TYPE_EMAIL = 'EMAIL';
@@ -16,6 +17,7 @@ export const VALIDATOR_MAXLENGTH = val => ({
   type: VALIDATOR_TYPE_MAXLENGTH,
   val: val
 });
+export const VALIDATOR_NUMBER = () => ({ type: VALIDATOR_TYPE_NUMBER });
 export const VALIDATOR_MIN = val => ({ type: VALIDATOR_TYPE_MIN, val: val });
 export const VALIDATOR_MAX = val => ({ type: VALIDATOR_TYPE_MAX, val: val });
 export const VALIDATOR_EMAIL = () => ({ type: VALIDATOR_TYPE_EMAIL });
@@ -31,6 +33,9 @@ export const validate = (value, validators) => {
     }
     if (validator.type === VALIDATOR_TYPE_MAXLENGTH) {
       isValid = isValid && value.trim().length <= validator.val;
+    }
+    if (validator.type === VALIDATOR_TYPE_NUMBER) {
+      isValid = isValid && !isNaN(value.trim()) && value.trim().length > 0;
     }
     if (validator.type === VALIDATOR_TYPE_MIN) {
       isValid = isValid && +value >= validator.val;

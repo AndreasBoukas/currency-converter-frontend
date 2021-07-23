@@ -1,21 +1,35 @@
-import React, { useState } from "react";
+import React from "react";
 
 import CurrencyItem from "./CurrencyItem";
+import Card from "../../shared/components/UIELEMENTS/Card";
+import "./CurrencyList.css";
 
 const CurrencyList = (props) => {
-
-    let [currency, setCurrency] = useState("Select a Currency")
-
-    let currencyChangeHandler = (event) => {
-        setCurrency(event.target.label)
-    }
+  //either message no users found
+  //or list of our users
+  // expect to get array data from props
+  if (props.items.length === 0) {
+    return (
+      <div className="center">
+        <Card>
+          <h2>No Currencies found</h2>
+        </Card>
+      </div>
+    );
+  }
 
   return (
-    <div>
-        {currency}
-        <br />
-        <option></option>
-    </div>
+    <ul className="currency-list">
+      {props.items.map((currency) => (
+        <CurrencyItem
+          key={currency.id}
+          id={currency.id}
+          image={currency.image}
+          title={currency.title}
+          exchangeRate={currency.exchangeRate}
+        />
+      ))}
+    </ul>
   );
 };
 

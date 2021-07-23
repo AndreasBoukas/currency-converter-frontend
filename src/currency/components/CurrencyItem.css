@@ -1,0 +1,60 @@
+.currency-item {
+  margin: 1rem 0;
+}
+
+.currency-item__content {
+  padding: 0;
+}
+
+.currency-item__info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.currency-item__image {
+  width: 100%;
+  height: 12.5rem;
+  margin-right: 1.5rem;
+}
+
+.currency-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.currency-item__info h2,
+.currency-item__info h3,
+.currency-item__info p {
+  margin: 0 0 0.5rem 0;
+}
+
+.currency-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #ccc;
+}
+
+.currency-item__modal-content {
+  padding: 0;
+}
+
+.currency-item__modal-actions {
+  text-align: right;
+}
+
+.currency-item__actions button,
+.currency-item__actions a {
+  margin: 0.5rem;
+}
+
+.map-container {
+  height: 20rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .currency-item__image {
+    height: 20rem;
+  }
+}

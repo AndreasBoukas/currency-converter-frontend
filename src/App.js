@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 
 import CurrencyConvert from "./currency/pages/CurrencyConvert";
+import Currencies from "./currency/pages/Currencies";
 import MainNavigation from "./shared/components/navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 import NewCurrency from "./currency/pages/NewCurrency";
@@ -15,13 +16,16 @@ import { AuthContext } from "./shared/context/auth-context";
 
 function App() {
   const [isLoggedin, SetIsLoggedin] = useState(false);
+  const [userId, SetUserId] = useState(null);
 
-  const login = useCallback(() => {
+  const login = useCallback((uid) => {
     SetIsLoggedin(true);
+    SetUserId(uid);
   }, []);
 
   const logout = useCallback(() => {
     SetIsLoggedin(false);
+    SetUserId(null);
   }, []);
 
   let routes;
@@ -34,7 +38,7 @@ function App() {
           <CurrencyConvert />
         </Route>
         <Route path="/currency/list" exact>
-          {/* <NewCurrency /> */}
+          <Currencies />
         </Route>
         <Route path="/currency/new" exact>
           <NewCurrency />
@@ -61,7 +65,12 @@ function App() {
 
   return (
     <AuthContext.Provider
-      value={{ isLoggedin: isLoggedin, login: login, logout: logout }}
+      value={{
+        isLoggedin: isLoggedin,
+        userId: userId,
+        login: login,
+        logout: logout,
+      }}
     >
       <Router>
         <MainNavigation />
