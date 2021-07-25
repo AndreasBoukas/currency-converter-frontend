@@ -3,6 +3,8 @@ import React, { useRef, useState, useEffect } from "react";
 import Button from "./Button";
 import "./ImageUpload.css";
 
+//This is a component for the user to upload his/her own images
+//Currencly not used
 const ImageUpload = (props) => {
   const filePickerRef = useRef();
   const [file, setFile] = useState();

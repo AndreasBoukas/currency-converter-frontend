@@ -4,6 +4,7 @@ import { AuthContext } from "../../context/auth-context";
 
 import "./NavLinks.css";
 
+//This component has the links in navbar
 const NavLinks = (props) => {
   const auth = useContext(AuthContext);
 

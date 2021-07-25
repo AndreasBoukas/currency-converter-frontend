@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Button.css';
 
+//This is a button component
 const Button = props => {
   if (props.href) {
     return (

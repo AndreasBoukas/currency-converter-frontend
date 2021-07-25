@@ -12,6 +12,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./CurrencyForm.css";
 
+//In this page the user can create a new currency
 const NewCurrency = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -65,7 +66,7 @@ const NewCurrency = () => {
           id="title"
           element="input"
           type="text"
-          label="Title"
+          label="Currency Name"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid title."
           onInput={inputHandler}
@@ -74,7 +75,7 @@ const NewCurrency = () => {
           id="exchangeRate"
           element="input"
           type="number"
-          label="exchangeRate"
+          label="exchange Rate"
           validators={[VALIDATOR_REQUIRE()]}
           errorText="Please enter a valid exchangeRate."
           onInput={inputHandler}

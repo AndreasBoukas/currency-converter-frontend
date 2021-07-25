@@ -4,6 +4,7 @@ import { CSSTransition } from "react-transition-group";
 
 import "./SideDrawer.css";
 
+//This is the sidebar that is used in the mobile view
 const SideDrawer = (props) => {
   const content = (
     <CSSTransition

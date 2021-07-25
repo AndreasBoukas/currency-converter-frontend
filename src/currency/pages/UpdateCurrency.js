@@ -16,6 +16,7 @@ import ErrorModal from "../../shared/components/UIELEMENTS/ErrorModal";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./CurrencyForm.css";
 
+//In this page the user can edit an existing currency
 const UpdateCurrency = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -44,8 +45,8 @@ const UpdateCurrency = () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/currency/update/${currencyId}`
+          //The default request is GET request
         );
-        //The default request is GET request
         setLoadedCurrencies(responseData.selectedCurrency);
 
         setFormData(
@@ -69,7 +70,7 @@ const UpdateCurrency = () => {
   // use effect run certain code only when certain dependecies change
   // Use of sendRequest function because we cant use async in useEffect
 
-  const placeUpdateSubmitHandler = async (event) => {
+  const currencyUpdateSubmitHandler = async (event) => {
     event.preventDefault();
     try {
       await sendRequest(
@@ -78,7 +79,7 @@ const UpdateCurrency = () => {
         JSON.stringify({
           title: formState.inputs.title.value,
           exchangeRate: formState.inputs.exchangeRate.value,
-          creator: auth.userId
+          creator: auth.userId,
         }),
         {
           "Content-Type": "application/json",
@@ -112,8 +113,14 @@ const UpdateCurrency = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       {!isLoading && loadedCurrencies && (
-        <Card>
-          <form className="place-form" onSubmit={placeUpdateSubmitHandler}>
+        <div>
+          <form
+            className="currency-form"
+            onSubmit={currencyUpdateSubmitHandler}
+          >
+            <div className="currency-info">
+              <h2>Updating {loadedCurrencies.title}</h2>
+            </div>
             <Input
               id="title"
               element="input"
@@ -140,7 +147,7 @@ const UpdateCurrency = () => {
               UPDATE CURRENCY
             </Button>
           </form>
-        </Card>
+        </div>
       )}
     </React.Fragment>
   );

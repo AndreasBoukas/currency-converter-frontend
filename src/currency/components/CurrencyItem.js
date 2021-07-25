@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 
-import Avatar from "../../shared/components/UIELEMENTS/Avatar";
 import Card from "../../shared/components/UIELEMENTS/Card";
 import Button from "../../shared/components/FormElements/Button";
 import Modal from "../../shared/components/UIELEMENTS/Modal";
@@ -9,6 +8,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./CurrencyList";
 
+//This Component is a single currency in a list of currencies.
 const CurrencyItem = (props) => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const auth = useContext(AuthContext);
@@ -60,9 +60,6 @@ const CurrencyItem = (props) => {
 
       <li className="currency-item">
         <Card className="currency-item__content">
-          {/* <div className="currency-item__image">
-            <Avatar image={props.image} alt={props.title} />
-          </div> */}
           <div className="currency-item__info">
             <h2>{props.title}</h2>
             <h3>Exchange Rate: {props.exchangeRate}</h3>

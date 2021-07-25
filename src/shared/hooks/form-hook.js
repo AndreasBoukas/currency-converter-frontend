@@ -1,5 +1,7 @@
 import { useCallback, useReducer } from "react";
 
+//This custom hook handles the form input values and the input validity states
+
 const formReducer = (state, action) => {
   switch (action.type) {
     case "INPUT_CHANGE":
@@ -39,6 +41,7 @@ export const useForm = (initialInputs, initialFormValidity) => {
     isValid: initialFormValidity,
   });
 
+  //This runs when the input value changes
   const inputHandler = useCallback((id, value, isValid) => {
     dispatch({
       type: "INPUT_CHANGE",
@@ -48,6 +51,7 @@ export const useForm = (initialInputs, initialFormValidity) => {
     });
   }, []);
 
+  //This sets the data and input validity. For exapmle the update currency page
   const setFormData = useCallback((inputData, formValidity) => {
     dispatch({
       type: "SET_DATA",

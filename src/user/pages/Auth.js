@@ -15,11 +15,13 @@ import ErrorModal from "../../shared/components/UIELEMENTS/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIELEMENTS/LoadingSpinner";
 import "./Auth.css";
 
+//The login in - sign up page
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
+  //initializes the inputs
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {

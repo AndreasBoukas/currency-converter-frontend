@@ -3,6 +3,7 @@ import React, { useReducer, useEffect } from "react";
 import { validate } from "../../util/validators";
 import "./Input.css";
 
+//inputReducer handles the validation logic for the input field 
 const inputReducer = (state, action) => {
   switch (action.type) {
     case "CHANGE":
@@ -18,6 +19,8 @@ const inputReducer = (state, action) => {
   }
 };
 
+
+//This component is an input component
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue || '',
@@ -33,6 +36,8 @@ const Input = (props) => {
     onInput(id, value, isValid);
   }, [id, value, isValid, onInput]);
 
+  //When user writes in the input field runs the inputReducer with type CHANGE.
+  //This checks if the input field is valid with every keystroke.
   const changeHandler = (event) => {
     dispatch({
       type: "CHANGE",
@@ -41,6 +46,8 @@ const Input = (props) => {
     });
   };
 
+  //When user clicks out of the input runs the inputReducer with type TOUCH
+  //This sets the input field seem valid until the user clicks on it once
   const touchHandler = () => {
     dispatch({
       type: "TOUCH",

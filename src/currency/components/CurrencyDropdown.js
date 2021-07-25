@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
-
-
+import React from "react";
 
 import "./CurrencyDropdown.css";
 
+//This component creates the dropdown for the currency exchange
 const CurrencyDropdown = (props) => {
   return (
     <React.Fragment>

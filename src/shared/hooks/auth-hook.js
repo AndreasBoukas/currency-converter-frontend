@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 
 let logoutTimer;
 
+//THis is a custom hook that handles the authentication
 export const useAuth = () => {
   const [token, SetToken] = useState(null);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
@@ -13,6 +14,7 @@ export const useAuth = () => {
     const tokenExpirationDate =
       expirationDate || new Date(new Date().getTime() + 1000 * 60 * 10); //expires in 10 minutes
     setTokenExpirationDate(tokenExpirationDate);
+    //Write the token in local storage
     localStorage.setItem(
       "userData",
       JSON.stringify({
@@ -41,6 +43,7 @@ export const useAuth = () => {
     }
   }, [token, logout, tokenExpirationDate]);
 
+  //This logs the user in if the token hasnt expired
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem("userData"));
     if (

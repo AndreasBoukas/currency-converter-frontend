@@ -4,6 +4,7 @@ import CurrencyItem from "./CurrencyItem";
 import Card from "../../shared/components/UIELEMENTS/Card";
 import "./CurrencyList.css";
 
+//This component is a list of all currencies
 const CurrencyList = (props) => {
   //either message no users found
   //or list of our users
@@ -19,18 +20,20 @@ const CurrencyList = (props) => {
   }
 
   return (
-    <ul className="currency-list">
-      {props.items.map((currency) => (
-        <CurrencyItem
-          key={currency.id}
-          id={currency._id}
-          // image={currency.image}
-          title={currency.title}
-          exchangeRate={currency.exchangeRate}
-          onDelete={props.onDeleteCurrency}
-        />
-      ))}
-    </ul>
+    <React.Fragment>
+      <ul className="currency-list">
+        {props.items.map((currency) => (
+          <CurrencyItem
+            key={currency.id}
+            id={currency._id}
+            // image={currency.image}
+            title={currency.title}
+            exchangeRate={currency.exchangeRate}
+            onDelete={props.onDeleteCurrency}
+          />
+        ))}
+      </ul>
+    </React.Fragment>
   );
 };
 

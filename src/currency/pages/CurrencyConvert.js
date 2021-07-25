@@ -10,6 +10,8 @@ import LoadingSpinner from "../../shared/components/UIELEMENTS/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./CurrencyConvert.css";
 
+
+//in this page the user can convert one currency to another.
 const CurrencyConvert = () => {
   //exchange rate is based on euro for example 0.7265USD to buy 1 Euro
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -63,18 +65,18 @@ const CurrencyConvert = () => {
 
   //Converts the Currencies and rounds the result to 4 decimal places
   const ConvertRound = (amount, firstValue, secondValue) => {
-    if (firstValue[1] === "Euro") {
-      const result = amount * (firstValue[0] / secondValue[0]);
+    if (firstValue == 1) {
+      const result = amount * (secondValue / firstValue);
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
       return roundResult;
-    } else if (secondValue[1] === "Euro") {
-      const result = amount * (secondValue[0] / firstValue[0]);
+    } else if (secondValue == 1) {
+      const result = amount * (secondValue / firstValue);
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
       return roundResult;
     } else {
-      const result = amount * (secondValue[0] / firstValue[0]);
+      const result = amount * (secondValue / firstValue);
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
       return roundResult;
@@ -126,8 +128,8 @@ const CurrencyConvert = () => {
                     {formState.inputs.amount.value} {firstSelectedCurrency[1]} ={" "}
                     {ConvertRound(
                       formState.inputs.amount.value,
-                      firstSelectedCurrency,
-                      secondSelectedCurrency
+                      firstSelectedCurrency[0],
+                      secondSelectedCurrency[0]
                     )}{" "}
                     {secondSelectedCurrency[1]}
                   </h3>
@@ -137,8 +139,8 @@ const CurrencyConvert = () => {
                     ={" "}
                     {ConvertRound(
                       formState.inputs.amount.value,
-                      secondSelectedCurrency,
-                      firstSelectedCurrency
+                      secondSelectedCurrency[0],
+                      firstSelectedCurrency[0]
                     )}{" "}
                     {firstSelectedCurrency[1]}
                   </p>

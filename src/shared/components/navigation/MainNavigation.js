@@ -7,7 +7,8 @@ import SideDrawer from "./SideDrawer";
 import "./MainNavigation.css";
 import Backdrop from "../UIELEMENTS/Backdrop";
 
-const MainNavigation = (props) => {
+//This is the main navigation component. 
+const MainNavigation = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const openDrawerHandler = () => {
