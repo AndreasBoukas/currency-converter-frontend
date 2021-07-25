@@ -60,9 +60,9 @@ const CurrencyItem = (props) => {
 
       <li className="currency-item">
         <Card className="currency-item__content">
-          <div className="currency-item__image">
+          {/* <div className="currency-item__image">
             <Avatar image={props.image} alt={props.title} />
-          </div>
+          </div> */}
           <div className="currency-item__info">
             <h2>{props.title}</h2>
             <h3>Exchange Rate: {props.exchangeRate}</h3>

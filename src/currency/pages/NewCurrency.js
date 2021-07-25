@@ -5,6 +5,7 @@ import Input from "../../shared/components/FormElements/Input";
 import Button from "../../shared/components/FormElements/Button";
 import ErrorModal from "../../shared/components/UIELEMENTS/ErrorModal";
 import LoadingSpinner from "../../shared/components/UIELEMENTS/LoadingSpinner";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import { VALIDATOR_REQUIRE } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
@@ -55,7 +56,11 @@ const NewCurrency = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <form className="currency-form" onSubmit={currencySubmitHandler}>
-        {isLoading && <LoadingSpinner asOverlay />}
+        <div className="currency-form__info">
+          <h3>Please add the exchange rate based on the Euro</h3>
+          <p>For example 1 Euro is 1.17 USD.</p>
+          <p>So the USD exhange Rate is 1.17</p>
+        </div>
         <Input
           id="title"
           element="input"

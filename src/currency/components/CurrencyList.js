@@ -24,7 +24,7 @@ const CurrencyList = (props) => {
         <CurrencyItem
           key={currency.id}
           id={currency._id}
-          image={currency.image}
+          // image={currency.image}
           title={currency.title}
           exchangeRate={currency.exchangeRate}
           onDelete={props.onDeleteCurrency}
