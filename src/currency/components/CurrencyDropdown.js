@@ -23,7 +23,6 @@ const CurrencyDropdown = (props) => {
       } catch (err) {}
     };
     fetchCurrencies();
-    console.log(loadedCurrencies);
   }, [sendRequest]); //sendRequest is a dependency of the useEffect hook
   // const curr = props.currency;
   return (

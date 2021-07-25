@@ -35,7 +35,11 @@ const MainNavigation = (props) => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">Currency Converter</Link>
+          <Link to="/" className="main-navigation__title-converter">
+            Currency{" "}
+          </Link>
+
+          <Link to="/">Converter</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />

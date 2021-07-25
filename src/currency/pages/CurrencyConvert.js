@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import CurrencyDropdown from "../components/CurrencyDropdown";
 import Card from "../../shared/components/UIELEMENTS/Card";
-import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
 import { useForm } from "../../shared/hooks/form-hook";
 import { VALIDATOR_NUMBER } from "../../shared/util/validators";
@@ -11,7 +10,6 @@ import "./CurrencyConvert.css";
 
 const CurrencyConvert = () => {
   //exchange rate is based on euro for example 0.7265USD to buy 1 Euro
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -44,22 +42,32 @@ const CurrencyConvert = () => {
     setSecondSelectedCurrency(arrayData);
   };
 
-
-  //Rounds the conversion result to 4 decimal places
-  const roundResult = (result) => {
-    const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
-    return roundResult;
+  //Converts the Currencies and rounds the result to 4 decimal places
+  const ConvertRound = (amount, firstValue, secondValue) => {
+    if (firstValue == 1) {
+      const result = amount * secondValue;
+      const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
+      console.log(roundResult);
+      return roundResult;
+    } else if (secondValue == 1) {
+      const result = amount * (secondValue / firstValue);
+      const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
+      console.log(roundResult);
+      return roundResult;
+    } else {
+      const result = amount * (secondValue / firstValue);
+      const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
+      console.log(roundResult);
+      return roundResult;
+    }
   };
 
   return (
     <React.Fragment>
-      <h2 className="currency-convert__selection-result">
-        {firstSelectedCurrency[1]}
-      </h2>
-      <h2 className="currency-convert__selection-result">
-        {secondSelectedCurrency[1]}
-      </h2>
       <Card className="currency-convert">
+        <div className="currency-convert__selection-result">
+          <h2>Select a Currency</h2>
+        </div>
         <br />
         <form>
           <Input
@@ -85,14 +93,27 @@ const CurrencyConvert = () => {
           {formState.inputs.amount.isValid &&
             firstSelectedCurrency[1] !== "Select a Currency" &&
             secondSelectedCurrency[1] !== "Select a Currency" && (
-              <h3>
-                {formState.inputs.amount.value} {firstSelectedCurrency[1]} ={" "}
-                {roundResult(
-                  formState.inputs.amount.value *
-                    (firstSelectedCurrency[0] / secondSelectedCurrency[0])
-                )}{" "}
-                {secondSelectedCurrency[1]}
-              </h3>
+              <React.Fragment>
+                <h3>
+                  {formState.inputs.amount.value} {firstSelectedCurrency[1]} ={" "}
+                  {ConvertRound(
+                    formState.inputs.amount.value,
+                    firstSelectedCurrency[0],
+                    secondSelectedCurrency[0]
+                  )}{" "}
+                  {secondSelectedCurrency[1]}
+                </h3>
+                <br />
+                <p>
+                  {formState.inputs.amount.value} {secondSelectedCurrency[1]} ={" "}
+                  {ConvertRound(
+                    formState.inputs.amount.value,
+                    secondSelectedCurrency[0],
+                    firstSelectedCurrency[0]
+                  )}{" "}
+                  {firstSelectedCurrency[1]}
+                </p>
+              </React.Fragment>
             )}
         </div>
       </Card>

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,24 +13,15 @@ import Auth from "./user/pages/Auth";
 import NewCurrency from "./currency/pages/NewCurrency";
 import UpdateCurrency from "./currency/pages/UpdateCurrency";
 import { AuthContext } from "./shared/context/auth-context";
+import { useAuth } from "./shared/hooks/auth-hook";
 
 function App() {
-  const [isLoggedin, SetIsLoggedin] = useState(false);
-  const [userId, SetUserId] = useState(null);
-
-  const login = useCallback((uid) => {
-    SetIsLoggedin(true);
-    SetUserId(uid);
-  }, []);
-
-  const logout = useCallback(() => {
-    SetIsLoggedin(false);
-    SetUserId(null);
-  }, []);
+  //the auth-hook has the authentication logic
+  const { token, login, logout, userId } = useAuth();
 
   let routes;
 
-  if (isLoggedin) {
+  if (token) {
     //if user IS logged in
     routes = (
       <Switch>
@@ -55,6 +46,9 @@ function App() {
         <Route path="/" exact>
           <CurrencyConvert />
         </Route>
+        <Route path="/currency/list" exact>
+          <Currencies />
+        </Route>
         <Route path="/auth" exact>
           <Auth />
         </Route>
@@ -66,7 +60,8 @@ function App() {
   return (
     <AuthContext.Provider
       value={{
-        isLoggedin: isLoggedin,
+        isLoggedin: !!token, //if truthy return true
+        token: token,
         userId: userId,
         login: login,
         logout: logout,

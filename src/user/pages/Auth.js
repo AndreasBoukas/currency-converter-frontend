@@ -75,7 +75,7 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData  .token);
       } catch (err) {}
     } else {
       try {
@@ -92,7 +92,7 @@ const Auth = () => {
           }
         );
 
-        auth.login(responseData.user.id);
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {}
     }
   };
@@ -128,7 +128,7 @@ const Auth = () => {
           <Input
             id="password"
             element="input"
-            type="text"
+            type="password"
             label="Password"
             validators={[VALIDATOR_MINLENGTH(6)]}
             errorText="Please enter a valid Password. At least 6 characters long"

@@ -42,7 +42,10 @@ const NewCurrency = () => {
           exchangeRate: formState.inputs.exchangeRate.value,
           creator: auth.userId,
         }),
-        { "Content-Type": "application/json" }
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
+        }
       );
       history.push("/"); // redirect to /
     } catch (err) {}

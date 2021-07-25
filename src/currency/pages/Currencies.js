@@ -24,6 +24,14 @@ const Currencies = () => {
     fetchCurrencies();
   }, [sendRequest]); //sendRequest is a dependency of the useEffect hook
 
+  //Update list when currency is deleted
+  const currencyDeletedHandler = deletedCurrencyId => {
+    setLoadedCurrencies(prevCurrencies =>
+      prevCurrencies.filter(currency => currency._id !== deletedCurrencyId)
+    );
+  };
+
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -33,7 +41,7 @@ const Currencies = () => {
         </div>
       )}
       {!isLoading && loadedCurrencies && (
-        <CurrencyList items={loadedCurrencies} />
+        <CurrencyList items={loadedCurrencies} onDeleteCurrency={currencyDeletedHandler}/>
       )}
     </React.Fragment>
   );

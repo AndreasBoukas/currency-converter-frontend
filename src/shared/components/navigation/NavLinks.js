@@ -14,11 +14,9 @@ const NavLinks = (props) => {
           Convert
         </NavLink>
       </li>
-      {auth.isLoggedin && ( //if is logged in then render Currency List button
-        <li>
-          <NavLink to="/currency/list">Currency List</NavLink>
-        </li>
-      )}
+      <li>
+        <NavLink to="/currency/list">Currency List</NavLink>
+      </li>
       {auth.isLoggedin && ( //if is logged in then render Add Currency button
         <li>
           <NavLink to="/currency/new">Add Currency</NavLink>

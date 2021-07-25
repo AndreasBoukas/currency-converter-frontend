@@ -27,10 +27,12 @@
   border-radius: 5px;
   background: #fff;
   box-shadow: 0 1px 3px -2px;
+  font-size:large;
 }
 
 .dropdown-main select option {
   color: #223254;
+  font-size:large;
 }
 
 .dropdown-main select option[value=""][disabled] {

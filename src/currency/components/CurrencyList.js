@@ -23,10 +23,11 @@ const CurrencyList = (props) => {
       {props.items.map((currency) => (
         <CurrencyItem
           key={currency.id}
-          id={currency.id}
+          id={currency._id}
           image={currency.image}
           title={currency.title}
           exchangeRate={currency.exchangeRate}
+          onDelete={props.onDeleteCurrency}
         />
       ))}
     </ul>

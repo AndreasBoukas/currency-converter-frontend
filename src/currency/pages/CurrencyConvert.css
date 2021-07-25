@@ -1,11 +1,10 @@
 .currency-convert {
   margin: 10rem auto;
   padding: 2rem;
+  height: 21rem;
   width: 50%;
   max-width: 100rem;
   text-align: center;
-  /* display: flex;
-  justify-content: center; */
 }
 
 .currency-convert form {
@@ -13,11 +12,41 @@
   justify-content: center;
 }
 
-.currency-convert form input {
-  margin-right: 1rem;
+.currency-convert input,
+.currency-convert label {
+  margin-top: -17px;
+}
+
+.currency-convert label {
+  margin-bottom: 1rem;
 }
 
 .currency-convert__selection-result {
   display: flex;
   justify-content: center;
+  color: #ff6a3d;
+}
+
+.result-div {
+  margin: 1rem;
+  margin-left: 5rem;
+  text-align: start;
+}
+
+.result-div p {
+  margin-top: -0.1rem;
+}
+
+@media (max-width: 768px) {
+  .currency-convert form {
+    display: inline;
+    justify-content: center;
+  }
+  .currency-convert {
+    height: 27rem;
+  }
+  .currency-convert input {
+    margin-left: 1rem;
+    width: 89%;
+  }
 }
