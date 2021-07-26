@@ -126,6 +126,7 @@ const Auth = () => {
               validators={[VALIDATOR_REQUIRE()]}
               errorText="Please enter a name"
               onInput={inputHandler}
+              autoComplete={"off"}
             />
           )}
           <Input
@@ -136,6 +137,7 @@ const Auth = () => {
             validators={[VALIDATOR_EMAIL()]}
             errorText="Please enter a valid Email"
             onInput={inputHandler}
+            autoComplete={"off"}
           />
           <Input
             id="password"

@@ -112,6 +112,7 @@ const CurrencyConvert = () => {
               validators={[VALIDATOR_NUMBER()]}
               errorText="Please enter an valid amount"
               onInput={inputHandler}
+              autoComplete={"off"}
             />
             <CurrencyDropdown
               currency={firstSelectedCurrency}
