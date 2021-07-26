@@ -17,12 +17,12 @@ const Currencies = () => {
     const fetchCurrencies = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/currency/list"
+          `${process.env.REACT_APP_BACKEND_URL}/currency/list`
         );
         //The default request is GET request
         //Filter out the Euro
         const filteredCurrencies = responseData.currencies.filter(
-          (currency) => currency._id !== "60f943b45fc686381523aff5"
+          (currency) => currency._id !== process.env.REACT_APP_EUROID
         );
         setLoadedCurrencies(filteredCurrencies);
       } catch (err) {}

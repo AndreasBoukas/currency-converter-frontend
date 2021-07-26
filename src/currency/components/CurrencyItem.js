@@ -20,7 +20,7 @@ const CurrencyItem = (props) => {
     setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/currency/delete/${props.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/currency/delete/${props.id}`,
         "DELETE",
         null,
         {

@@ -44,7 +44,7 @@ const UpdateCurrency = () => {
     const fetchCurrency = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/currency/update/${currencyId}`
+          `${process.env.REACT_APP_BACKEND_URL}/currency/update/${currencyId}`
           //The default request is GET request
         );
         setLoadedCurrencies(responseData.selectedCurrency);
@@ -74,7 +74,7 @@ const UpdateCurrency = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/currency/update/${currencyId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/currency/update/${currencyId}`,
         "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,14 +6,18 @@ import {
   Switch,
 } from "react-router-dom";
 
-import CurrencyConvert from "./currency/pages/CurrencyConvert";
-import Currencies from "./currency/pages/Currencies";
+
 import MainNavigation from "./shared/components/navigation/MainNavigation";
-import Auth from "./user/pages/Auth";
-import NewCurrency from "./currency/pages/NewCurrency";
-import UpdateCurrency from "./currency/pages/UpdateCurrency";
+import LoadingSpinner from "./shared/components/UIELEMENTS/LoadingSpinner";
 import { AuthContext } from "./shared/context/auth-context";
 import { useAuth } from "./shared/hooks/auth-hook";
+
+const CurrencyConvert = React.lazy(() => import("./currency/pages/CurrencyConvert"))
+const Currencies = React.lazy(() => import("./currency/pages/Currencies"))
+const Auth = React.lazy(() => import("./user/pages/Auth"))
+const NewCurrency = React.lazy(() => import("./currency/pages/NewCurrency"))
+const UpdateCurrency = React.lazy(() => import("./currency/pages/UpdateCurrency"))
+
 
 function App() {
   //the auth-hook has the authentication logic
@@ -69,7 +73,7 @@ function App() {
     >
       <Router>
         <MainNavigation />
-        <main>{routes}</main>
+        <main><Suspense fallback={<div className="center"><LoadingSpinner /></div>}>{routes}</Suspense></main>
       </Router>
     </AuthContext.Provider>
   );

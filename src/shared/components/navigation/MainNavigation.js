@@ -7,7 +7,7 @@ import SideDrawer from "./SideDrawer";
 import "./MainNavigation.css";
 import Backdrop from "../UIELEMENTS/Backdrop";
 
-//This is the main navigation component. 
+//This is the main navigation component.
 const MainNavigation = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
@@ -36,11 +36,9 @@ const MainNavigation = () => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/" className="main-navigation__title-converter">
-            Currency{" "}
+          <Link to="/">
+            Currency Converter
           </Link>
-
-          <Link to="/">Converter</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />

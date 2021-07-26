@@ -37,7 +37,7 @@ const NewCurrency = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        "http://localhost:5000/api/currency",
+        `${process.env.REACT_APP_BACKEND_URL}/currency`,
         "POST",
         JSON.stringify({
           title: formState.inputs.title.value,

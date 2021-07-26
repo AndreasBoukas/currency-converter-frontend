@@ -7,6 +7,7 @@ import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
   VALIDATOR_EMAIL,
+  VALIDATOR_COMPARE,
 } from "../../shared/util/validators";
 import { useForm } from "../../shared/hooks/form-hook";
 import { useHttpClient } from "../../shared/hooks/http-hook";
@@ -43,6 +44,10 @@ const Auth = () => {
           ...formState.inputs,
           name: undefined, // drops the name Input when switching from sign up to login mode
         },
+        {
+          ...formState.inputs,
+          passwordConfirm: undefined, // drops the Password confirm Input when switching from sign up to login mode
+        },
         formState.inputs.email.isValid && formState.inputs.password.isvalid
       );
     } else {
@@ -51,6 +56,11 @@ const Auth = () => {
           ...formState.inputs,
           name: {
             //adding name field when swtching to singup mode
+            value: "",
+            isValid: false,
+          },
+          passwordConfirm: {
+            //adding Password confirm field when swtching to singup mode
             value: "",
             isValid: false,
           },
@@ -67,7 +77,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -82,7 +92,7 @@ const Auth = () => {
     } else {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           JSON.stringify({
             name: formState.inputs.name.value,
@@ -136,6 +146,17 @@ const Auth = () => {
             errorText="Please enter a valid Password. At least 6 characters long"
             onInput={inputHandler}
           />
+          {!isLoginMode && (
+            <Input
+              id="passwordConfirm"
+              element="input"
+              type="password"
+              label="Confirm Password"
+              validators={[VALIDATOR_COMPARE(formState.inputs.password.value)]}
+              errorText="The Passwords do no match"
+              onInput={inputHandler}
+            />
+          )}
           <Button type="submit" disabled={!formState.isValid}>
             {isLoginMode ? "LOG IN" : "SIGNUP"}
           </Button>

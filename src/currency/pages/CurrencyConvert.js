@@ -10,7 +10,6 @@ import LoadingSpinner from "../../shared/components/UIELEMENTS/LoadingSpinner";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import "./CurrencyConvert.css";
 
-
 //in this page the user can convert one currency to another.
 const CurrencyConvert = () => {
   //exchange rate is based on euro for example 0.7265USD to buy 1 Euro
@@ -23,7 +22,7 @@ const CurrencyConvert = () => {
     const fetchCurrencies = async () => {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/currency/list"
+          `${process.env.REACT_APP_BACKEND_URL}/currency/list`
         );
         //The default request is GET request
         setLoadedCurrencies(responseData.currencies);
@@ -65,12 +64,12 @@ const CurrencyConvert = () => {
 
   //Converts the Currencies and rounds the result to 4 decimal places
   const ConvertRound = (amount, firstValue, secondValue) => {
-    if (firstValue == 1) {
-      const result = amount * (secondValue / firstValue);
+    if (firstValue === 1) {
+      const result = amount * (firstValue / secondValue);
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
       return roundResult;
-    } else if (secondValue == 1) {
+    } else if (secondValue === 1) {
       const result = amount * (secondValue / firstValue);
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
@@ -80,6 +79,13 @@ const CurrencyConvert = () => {
       const roundResult = Math.round((result + Number.EPSILON) * 10000) / 10000;
       console.log(roundResult);
       return roundResult;
+    }
+  };
+
+  const formSubmitHandler = (event) => {
+    event.preventDefault();
+    if (event.key == "Enter") {
+      event.target.blur();
     }
   };
 
@@ -97,7 +103,7 @@ const CurrencyConvert = () => {
             <h2>Select a Currency</h2>
           </div>
           <br />
-          <form>
+          <form onSubmit={formSubmitHandler}>
             <Input
               id="amount"
               element="input"
